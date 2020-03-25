@@ -1,7 +1,7 @@
 require('dotenv').config();
-require('./demo/lib/utils/connect')();
+require('./lib/utils/connect')();
 
 const seedData = require('./db/seed');
 
-seedData({ tweetsToCreate: 100, commentsToCreate: 1000 })
+seedData({ authorsToCreate: 100, booksToCreate: 1000 })
   .then(() => console.log('done'));
