@@ -37,19 +37,19 @@ describe('book routes', () => {
       });
   });
 
-  // it('updates a comment by id', async() => {
-  //   const comment = await getComment();
+  it('updates a book by id', async() => {
+    const book = await getBook();
 
-  //   return request(app)
-  //     .patch(`/api/v1/comments/${comment._id}`)
-  //     .send({ text: 'bad!' })
-  //     .then(res => {
-  //       expect(res.body).toEqual({
-  //         ...comment,
-  //         text: 'bad!'
-  //       });
-  //     });
-  // });
+    return request(app)
+      .patch(`/api/v1/comments/${book._id}`)
+      .send({ title: 'Worst Book Ever!' })
+      .then(res => {
+        expect(res.body).toEqual({
+          ...book,
+          title: 'Worst Book Ever!'
+        });
+      });
+  });
 
   // it('deletes a comment by id', async() => {
   //   const comment = await getComment();
