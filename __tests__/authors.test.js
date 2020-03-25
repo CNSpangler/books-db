@@ -66,19 +66,19 @@ describe('author routes', () => {
   //       });
   //   });
 
-  //   it('deletes a tweet by id', async() => {
-  //     const tweet = await getTweet();
+  it('deletes an author by id', async() => {
+    const author = await getAuthor();
     
-//     return request(app)
-//       .delete(`/api/v1/tweets/${tweet._id}`)
-//       .then(res => {
-//         expect(res.body).toEqual(tweet);
-//         // expect(res.body).toEqual({
-//         //   _id: expect.any(String),
-//         //   handle: 'test',
-//         //   text: 'test 1234',
-//         //   __v: 0
-//         // });
-//       });
-//   });
+    return request(app)
+      .delete(`/api/v1/authors/${author._id}`)
+      .then(res => {
+        expect(res.body).toEqual(author);
+        // expect(res.body).toEqual({
+        //   _id: expect.any(String),
+        //   handle: 'test',
+        //   text: 'test 1234',
+        //   __v: 0
+        // });
+      });
+  });
 });
