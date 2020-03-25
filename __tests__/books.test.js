@@ -32,8 +32,7 @@ describe('book routes', () => {
       .get(`/api/v1/books/${book._id}`)
       .then(res => {
         expect(res.body).toEqual({
-          ...book,
-          authorId: author
+          ...book
         });
       });
   });
