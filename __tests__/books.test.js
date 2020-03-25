@@ -5,19 +5,18 @@ const app = require('../lib/app');
 
 describe('book routes', () => {
   it('creates a book', async() => {
-    const book = await getBook();
-
+    const author = await getAuthor();
     return request(app)
       .post('/api/v1/books')
       .send({
-        authorId: 1234,
+        authorId: author._id,
         title: 'Best Book Ever',
         genre: 'Non-Fiction'
       })
       .then(res => {
         expect(res.body).toEqual({
           _id: expect.any(String),
-          authorId: 1234,
+          authorId: author._id,
           title: 'Best Book Ever',
           genre: 'Non-Fiction',
           __v: 0
@@ -25,19 +24,19 @@ describe('book routes', () => {
       });
   });
 
-  // it('gets a comment by id', async() => {
-  //   const tweet = await getTweet();
-  //   const comment = await getComment({ tweetId: tweet._id });
+  it('gets a book by id', async() => {
+    const author = await getAuthor();
+    const book = await getBook({ authorId: author._id });
 
-  //   return request(app)
-  //     .get(`/api/v1/comments/${comment._id}`)
-  //     .then(res => {
-  //       expect(res.body).toEqual({
-  //         ...comment,
-  //         tweetId: tweet
-  //       });
-  //     });
-  // });
+    return request(app)
+      .get(`/api/v1/books/${book._id}`)
+      .then(res => {
+        expect(res.body).toEqual({
+          ...book,
+          authorId: author
+        });
+      });
+  });
 
   // it('updates a comment by id', async() => {
   //   const comment = await getComment();

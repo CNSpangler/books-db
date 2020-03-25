@@ -20,7 +20,6 @@ describe('author routes', () => {
         });
       });
   });
-
   
   it('gets all authors', async() => {
     const authors = await getAuthors();
