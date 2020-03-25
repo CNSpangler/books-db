@@ -10,15 +10,13 @@ module.exports = async({ authorsToCreate = 10, booksToCreate = 100 } = {}) => {
   // -> for each item in the array we create an object with { handle, text }
   // for each tweet in the mapped array we create a tweet in our mongodb
   const genres = ['Science Fiction', 'Fantasy', 'Non-Fiction', 'YA', 'Horror', 'Romance'];
-  const books = await Book.create([...Array(booksToCreate)].map(() => ({
+  await Book.create([...Array(booksToCreate)].map(() => ({
     title: chance.sentence(),
-    author: chance.sentence(),
+    author: chance.pickone(authors),
     genre: chance.pickone(genres),
   })));
 
   const authors = await Author.create([...Array(authorsToCreate)].map(() => ({
-    tweetId: chance.pickone(tweets)._id,
-    handle: chance.pickone(handles),
-    text: chance.sentence()
+    name: chance.name()
   })));
 };
