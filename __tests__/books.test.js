@@ -41,7 +41,7 @@ describe('book routes', () => {
     const book = await getBook();
 
     return request(app)
-      .patch(`/api/v1/comments/${book._id}`)
+      .patch(`/api/v1/books/${book._id}`)
       .send({ title: 'Worst Book Ever!' })
       .then(res => {
         expect(res.body).toEqual({
