@@ -55,7 +55,7 @@ describe('author routes', () => {
       .then(res => {
         expect(res.body).toEqual({
           ...author,
-          text: 'Janelle Rulezzz'
+          name: 'Janelle Rulezzz'
         });
         // expect(res.body).toEqual({
         //   _id: expect.any(String),
