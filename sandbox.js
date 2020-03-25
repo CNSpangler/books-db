@@ -1,16 +1,19 @@
 require('dotenv').config();
 require('./demo/lib/utils/connect')();
-const Tweet = require('./lib/models/Tweet');
-const Comment = require('./lib/models/Comment');
+const Author = require('./lib/models/Author');
+const Book = require('./lib/models/Book');
+const getters = require('./db/data-helpers');
 
-Tweet
-  .topHandles()
-  .then(topHandles => console.log(topHandles));
+getters();
 
-Comment
-  .topHandles()
-  .then(topCommentHandles => console.log(topCommentHandles));
+// Author
+//   .topHandles()
+//   .then(topHandles => console.log(topHandles));
 
-Tweet
-  .mostCommented()
-  .then(mostCommentedTweets => console.log(mostCommentedTweets));
+// Book
+//   .topHandles()
+//   .then(topBookHandles => console.log(topBookHandles));
+
+// Author
+//   .mostBooked()
+//   .then(mostBookedAuthors => console.log(mostBookedAuthors));
