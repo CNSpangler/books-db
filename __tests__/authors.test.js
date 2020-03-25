@@ -46,25 +46,25 @@ describe('author routes', () => {
       });
   });
 
-  //   it('updates a tweet by id', async() => {
-  //     const tweet = await getTweet();
+  it('updates an author by id', async() => {
+    const author = await getAuthor();
 
-  //     return request(app)
-  //       .patch(`/api/v1/tweets/${tweet._id}`)
-  //       .send({ text: '1234 test' })
-  //       .then(res => {
-  //         expect(res.body).toEqual({
-  //           ...tweet,
-  //           text: '1234 test'
-  //         });
-  //         // expect(res.body).toEqual({
-  //         //   _id: expect.any(String),
-  //         //   handle: 'test',
-  //         //   text: '1234 test',
-  //         //   __v: 0
-  //         // });
-  //       });
-  //   });
+    return request(app)
+      .patch(`/api/v1/authors/${author._id}`)
+      .send({ name: 'Janelle Rulezzz' })
+      .then(res => {
+        expect(res.body).toEqual({
+          ...author,
+          text: 'Janelle Rulezzz'
+        });
+        // expect(res.body).toEqual({
+        //   _id: expect.any(String),
+        //   handle: 'test',
+        //   text: '1234 test',
+        //   __v: 0
+        // });
+      });
+  });
 
   it('deletes an author by id', async() => {
     const author = await getAuthor();
@@ -73,12 +73,6 @@ describe('author routes', () => {
       .delete(`/api/v1/authors/${author._id}`)
       .then(res => {
         expect(res.body).toEqual(author);
-        // expect(res.body).toEqual({
-        //   _id: expect.any(String),
-        //   handle: 'test',
-        //   text: 'test 1234',
-        //   __v: 0
-        // });
       });
   });
 });
