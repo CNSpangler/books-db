@@ -1,15 +1,17 @@
-const { getAuthor, getAuthors, getBook, getBooks } = require('../db/data-helpers');
+const { getAuthor, getAuthors, getBooks } = require('../db/data-helpers');
 
 const request = require('supertest');
-const app = require('../demo/lib/app');
-const Author = require('../demo/lib/models/Author');
-const Book = require('../demo/lib/models/Book');
+const app = require('../lib/app');
+const Author = require('../lib/models/Author');
+const Book = require('../lib/models/Book');
 
 describe('author routes', () => {
   it('creates a author', () => {
     return request(app)
       .post('/api/v1/authors')
-      .send(getAuthor())
+      .send({
+        name: 'Jenna Rulezzz'
+      })
       .then(res => {
         expect(res.body).toEqual({
           _id: expect.any(String),
@@ -19,21 +21,16 @@ describe('author routes', () => {
       });
   });
 
-  //   it('creates a tweet with random text', () => {
-  //     return request(app)
-  //       .post('/api/v1/tweets')
-  //       .send({
-  //         handle: 'test',
-  //       })
-  //       .then(res => {
-  //         expect(res.body).toEqual({
-  //           _id: expect.any(String),
-  //           handle: 'test',
-  //           text: expect.any(String),
-  //           __v: 0
-  //         });
-  //       });
-  //   });
+  
+  it('gets all authors', async() => {
+    const authors = await getAuthors();
+
+    return request(app)
+      .get('/api/v1/authors')
+      .then(res => {
+        expect(res.body).toEqual(authors);
+      });
+  });
 
   //   it('gets a tweet by id', async() => {
   //     const tweet = await getTweet();
@@ -66,23 +63,6 @@ describe('author routes', () => {
   //         //   __v: 0
   //         // });
   //         // expect(res.body.comments).toEqual(JSON.parse(JSON.stringify(comments)));
-  //       });
-  //   });
-
-  //   it('gets all tweets', async() => {
-  //     const tweets = await getTweets();
-
-  //     return request(app)
-  //       .get('/api/v1/tweets')
-  //       .then(res => {
-  //         expect(res.body).toEqual(tweets);
-  //         // expect(res.body).toHaveLength(3);
-  //         // tweets.forEach(tweet => {
-  //         //   expect(res.body).toContainEqual({
-  //         //     ...tweet.toJSON(),
-  //         //     _id: tweet.id
-  //         //   });
-  //         // });
   //       });
   //   });
 
