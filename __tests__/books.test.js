@@ -51,14 +51,13 @@ describe('book routes', () => {
       });
   });
 
-  // it('deletes a comment by id', async() => {
-  //   const comment = await getComment();
+  it('deletes a book by id', async() => {
+    const book = await getBook();
 
-  //   return request(app)
-  //     .delete(`/api/v1/comments/${comment._id}`)
-  //     .then(res => {
-  //       expect(res.body).toEqual(comment);
-  //     });
-  // });
-
+    return request(app)
+      .delete(`/api/v1/books/${book._id}`)
+      .then(res => {
+        expect(res.body).toEqual(book);
+      });
+  });
 });
