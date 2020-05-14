@@ -1,4 +1,4 @@
-const { getBook, getAuthor } = require('../db/data-helpers');
+const { getBook, getBooks, getAuthor } = require('../db/data-helpers');
 
 const request = require('supertest');
 const app = require('../lib/app');
@@ -24,17 +24,17 @@ describe('book routes', () => {
       });
   });
 
-  // it('gets all books', async() => {
-  //   const books = await getBooks();
+  it('gets all books', async() => {
+    const books = await getBooks();
 
-  //   return request(app)
-  //     .get('/api/v1/books')
-  //     .then(res => {
-  //       expect(res.body).toEqual({
-  //         ...books
-  //       });
-  //     });
-  // });
+    return request(app)
+      .get('/api/v1/books')
+      .then(res => {
+        expect(res.body).toEqual({
+          ...books
+        });
+      });
+  });
 
   it('gets a book by id', async() => {
     const author = await getAuthor();
